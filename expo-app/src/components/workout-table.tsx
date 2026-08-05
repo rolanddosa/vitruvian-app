@@ -32,17 +32,26 @@ const DEFAULT_DATA = Array.from({ length: ROW_COUNT }, (_, row) =>
 );
 
 export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
-  const [selected, setSelected] = useState<{ row: number; col: number } | null>(null);
+  const [selected, setSelected] = useState<Set<string>>(new Set());
 
   const toggle = (row: number, col: number) =>
-    setSelected((prev) => (prev && prev.row === row && prev.col === col ? null : { row, col }));
+    setSelected((prev) => {
+      const key = `${row}:${col}`;
+      const next = new Set(prev);
+      if (next.has(key)) {
+        next.delete(key);
+      } else {
+        next.add(key);
+      }
+      return next;
+    });
 
   return (
     <ThemedView type="backgroundElement" style={styles.table}>
       {data.map((row, rowIndex) => (
         <View key={rowIndex} style={styles.row}>
           {row.map((value, colIndex) => {
-            const isSelected = selected?.row === rowIndex && selected?.col === colIndex;
+            const isSelected = selected.has(`${rowIndex}:${colIndex}`);
             return (
               <Pressable
                 key={colIndex}
