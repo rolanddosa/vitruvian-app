@@ -30,15 +30,23 @@ function getDevMenuHint() {
 }
 
 export default function HomeScreen() {
+  const tableData = [
+    ['Exercise', '1. [Functional Left Occupancy]', '2. Intact Left Lateralized Pattern', '3. Non-Intact Left Lateralized Pattern', '4. Non-Intact Right Lateralized Pattern', '5. Intact Right Lateralized Pattern', '6. [Functional Right Occupancy]'],
+    ['Cranial Strain', 'Mobile Right Sidebend', 'Likely Restricted Right Sidebend', 'Restricted Right Sidebend', 'Restricted Left Sidebend', 'Likely Restricted Left Sidebend', 'Mobile Left'],
+  ];
+
   return (
     <ThemedView style={styles.container}>
       <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent}>
         <SafeAreaView style={styles.safeArea}>
           <ThemedView style={styles.heroSection}>
             <AnimatedIcon />
+            <ThemedText type="title" style={styles.title}>
+              Welcome to&nbsp;Expo
+            </ThemedText>
           </ThemedView>
 
-          <WorkoutTable />
+          <WorkoutTable data={tableData} />
           {Platform.OS === 'web' && <WebBadge />}
         </SafeAreaView>
       </ScrollView>

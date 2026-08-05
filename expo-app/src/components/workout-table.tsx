@@ -8,24 +8,27 @@ import { ThemedView } from './themed-view';
 const COLUMN_COUNT = 7;
 const ROW_COUNT = 21;
 
-function TableCell({ column, row }: { column: number; row: number }) {
-  const isHeader = row === 0;
+function TableCell({ value, isHeader }: { value: string; isHeader: boolean }) {
   return (
     <ThemedView type="backgroundSelected" style={styles.cell}>
       <ThemedText type={isHeader ? 'smallBold' : 'small'} themeColor={isHeader ? 'textSecondary' : 'text'}>
-        {isHeader ? `Col ${column}` : `R${row}C${column}`}
+        {value}
       </ThemedText>
     </ThemedView>
   );
 }
 
-export function WorkoutTable() {
+const DEFAULT_DATA = Array.from({ length: ROW_COUNT }, (_, row) =>
+  Array.from({ length: COLUMN_COUNT }, (_, col) => (row === 0 ? `Col ${col + 1}` : `R${row}C${col + 1}`)),
+);
+
+export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
   return (
     <ThemedView type="backgroundElement" style={styles.table}>
-      {Array.from({ length: ROW_COUNT }, (_, row) => (
-        <View key={row} style={styles.row}>
-          {Array.from({ length: COLUMN_COUNT }, (_, col) => (
-            <TableCell key={col} row={row} column={col + 1} />
+      {data.map((row, rowIndex) => (
+        <View key={rowIndex} style={styles.row}>
+          {row.map((value, colIndex) => (
+            <TableCell key={colIndex} value={value} isHeader={rowIndex === 0} />
           ))}
         </View>
       ))}
