@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, View, type TextStyle } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 import { Spacing } from '@/constants/theme';
 
@@ -8,14 +8,6 @@ import { ThemedView } from './themed-view';
 
 const COLUMN_COUNT = 7;
 const ROW_COUNT = 21;
-
-const cellText: TextStyle = {
-  fontSize: 10,
-  lineHeight: 12,
-  textAlign: 'center',
-};
-
-(cellText as Record<string, unknown>).wordBreak = 'break-word';
 
 function TableCell({
   value,
@@ -28,16 +20,13 @@ function TableCell({
 }) {
   return (
     <ThemedView type={isSelected ? 'backgroundPressed' : 'backgroundSelected'} style={styles.cell}>
-      <ThemedText
-        type={isHeader ? 'smallBold' : 'small'}
-        themeColor={isHeader ? 'textSecondary' : 'text'}
-        style={cellText}
-      >
+      <ThemedText type={isHeader ? 'smallBold' : 'small'} themeColor={isHeader ? 'textSecondary' : 'text'}>
         {value}
       </ThemedText>
     </ThemedView>
   );
 }
+
 const DEFAULT_DATA = Array.from({ length: ROW_COUNT }, (_, row) =>
   Array.from({ length: COLUMN_COUNT }, (_, col) => (row === 0 ? `Col ${col + 1}` : `R${row}C${col + 1}`)),
 );
@@ -92,18 +81,15 @@ const styles = StyleSheet.create({
   },
   pressable: {
     flex: 1,
-    minWidth: 0,
   },
   pressed: {
     opacity: 0.7,
   },
   cell: {
     flex: 1,
-    minWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: Spacing.two,
-    paddingHorizontal: Spacing.half,
     borderRadius: Spacing.two,
   },
 });
