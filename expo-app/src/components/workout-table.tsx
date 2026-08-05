@@ -1,4 +1,5 @@
-import { StyleSheet, View } from 'react-native';
+import { useState } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 import { Spacing } from '@/constants/theme';
 
@@ -8,9 +9,17 @@ import { ThemedView } from './themed-view';
 const COLUMN_COUNT = 7;
 const ROW_COUNT = 21;
 
-function TableCell({ value, isHeader }: { value: string; isHeader: boolean }) {
+function TableCell({
+  value,
+  isHeader,
+  isSelected,
+}: {
+  value: string;
+  isHeader: boolean;
+  isSelected: boolean;
+}) {
   return (
-    <ThemedView type="backgroundSelected" style={styles.cell}>
+    <ThemedView type={isSelected ? 'backgroundPressed' : 'backgroundSelected'} style={styles.cell}>
       <ThemedText type={isHeader ? 'smallBold' : 'small'} themeColor={isHeader ? 'textSecondary' : 'text'}>
         {value}
       </ThemedText>
@@ -23,13 +32,27 @@ const DEFAULT_DATA = Array.from({ length: ROW_COUNT }, (_, row) =>
 );
 
 export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
+  const [selected, setSelected] = useState<{ row: number; col: number } | null>(null);
+
+  const toggle = (row: number, col: number) =>
+    setSelected((prev) => (prev && prev.row === row && prev.col === col ? null : { row, col }));
+
   return (
     <ThemedView type="backgroundElement" style={styles.table}>
       {data.map((row, rowIndex) => (
         <View key={rowIndex} style={styles.row}>
-          {row.map((value, colIndex) => (
-            <TableCell key={colIndex} value={value} isHeader={rowIndex === 0} />
-          ))}
+          {row.map((value, colIndex) => {
+            const isSelected = selected?.row === rowIndex && selected?.col === colIndex;
+            return (
+              <Pressable
+                key={colIndex}
+                onPress={() => toggle(rowIndex, colIndex)}
+                style={({ pressed }) => [styles.pressable, pressed && styles.pressed]}
+              >
+                <TableCell value={value} isHeader={rowIndex === 0} isSelected={isSelected} />
+              </Pressable>
+            );
+          })}
         </View>
       ))}
     </ThemedView>
@@ -46,6 +69,12 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     gap: Spacing.half,
+  },
+  pressable: {
+    flex: 1,
+  },
+  pressed: {
+    opacity: 0.7,
   },
   cell: {
     flex: 1,
