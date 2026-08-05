@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { Spacing } from '@/constants/theme';
-import { useTheme } from '@/hooks/use-theme';
 
 import { ThemedText } from './themed-text';
 import { ThemedView } from './themed-view';
@@ -21,11 +20,7 @@ function TableCell({
 }) {
   return (
     <ThemedView type={isSelected ? 'backgroundPressed' : 'backgroundSelected'} style={styles.cell}>
-      <ThemedText
-        type={isHeader ? 'smallBold' : 'small'}
-        themeColor={isHeader ? 'textSecondary' : 'text'}
-        style={styles.cellText}
-      >
+      <ThemedText type={isHeader ? 'smallBold' : 'small'} themeColor={isHeader ? 'textSecondary' : 'text'}>
         {value}
       </ThemedText>
     </ThemedView>
@@ -37,7 +32,6 @@ const DEFAULT_DATA = Array.from({ length: ROW_COUNT }, (_, row) =>
 );
 
 export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
-  const theme = useTheme();
   const [selected, setSelected] = useState<Set<string>>(new Set());
 
   const toggle = (row: number, col: number) =>
@@ -53,7 +47,7 @@ export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
     });
 
   return (
-    <ThemedView type="backgroundElement" style={[styles.table, { borderColor: theme.backgroundPressed }]}>
+    <ThemedView type="backgroundElement" style={styles.table}>
       {data.map((row, rowIndex) => (
         <View key={rowIndex} style={styles.row}>
           {row.map((value, colIndex) => {
@@ -80,7 +74,6 @@ const styles = StyleSheet.create({
     padding: Spacing.half,
     gap: Spacing.half,
     borderRadius: Spacing.three,
-    borderWidth: 1,
   },
   row: {
     flexDirection: 'row',
@@ -88,21 +81,15 @@ const styles = StyleSheet.create({
   },
   pressable: {
     flex: 1,
-    minWidth: 0,
   },
   pressed: {
     opacity: 0.7,
   },
   cell: {
     flex: 1,
-    minWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: Spacing.two,
-    paddingHorizontal: Spacing.half,
     borderRadius: Spacing.two,
-  },
-  cellText: {
-    textAlign: 'center',
   },
 });
