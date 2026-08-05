@@ -67,6 +67,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   safeArea: {
+    width: '100%',
+    alignSelf: 'center',
     paddingHorizontal: Spacing.four,
     alignItems: 'center',
     gap: Spacing.three,
