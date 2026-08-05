@@ -31,8 +31,10 @@ function getDevMenuHint() {
 
 export default function HomeScreen() {
   const tableData = [
-    ['Exercise', '1. [Functional Left Occupancy]', '2. Intact Left Lateralized Pattern', '3. Non-Intact Left Lateralized Pattern', '4. Non-Intact Right Lateralized Pattern', '5. Intact Right Lateralized Pattern', '6. [Functional Right Occupancy]'],
-    ['Cranial Strain', 'Mobile Right Sidebend', 'Likely Restricted Right Sidebend', 'Restricted Right Sidebend', 'Restricted Left Sidebend', 'Likely Restricted Left Sidebend', 'Mobile Left'],
+    ['Pattern Description', '1. [Functional Left Occupancy]', '2. Intact Left Lateralized Pattern', '3. Non-Intact Left Lateralized Pattern', '4. Non-Intact Right Lateralized Pattern', '5. Intact Right Lateralized Pattern', '6. [Functional Right Occupancy]'],
+    ['Cranial Strain', 'Mobile Right Sidebend', 'Likely Restricted Right Sidebend', 'Restricted Right Sidebend', 'Restricted Left Sidebend', 'Likely Restricted Left Sidebend', 'Mobile Left Sidebend'],
+    ['Complex Cranial Strain', 'Mobile Left Torsion', 'Unlikely Left Torsion', 'Possible Left Torsion', 'Possible Right Torsion','Unlikely Right Torsion', 'Mobile Right Torsion'],
+    ['Occlusal GPT', 'No Bias', 'Ideally Left Bias', 'Left but possibly Right Bias', 'Right but possibly Left Bias', 'Ideally Right Bias', 'No Bias']
   ];
 
   return (
