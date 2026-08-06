@@ -1,1 +1,1 @@
-
+# Having .nojekyll here, means it doesn't get deleted from /dist when npx expo export --platform web --output-dir ../docs
