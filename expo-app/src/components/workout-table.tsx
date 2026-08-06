@@ -47,7 +47,10 @@ export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
     });
 
   return (
-    <ThemedView type="backgroundElement" style={styles.table}>
+    <ThemedView
+      type="backgroundElement"
+      style={[styles.table, { transform: [{ scale: 0.65 }] }]}
+    >
       {data.map((row, rowIndex) => (
         <View key={rowIndex} style={styles.row}>
           {row.map((value, colIndex) => {
