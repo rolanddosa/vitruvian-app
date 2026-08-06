@@ -11,7 +11,6 @@ Settings: https://github.com/rolanddosa/vitruvian-app/settings/pages
 React Native + Expo for components reusability between mobile apps and web app
 
 ### Expo
-```npx expo export -p web```
+```npx create-expo start```
+```npx expo export --platform web --output-dir ../docs```  under ```repos/vitruvian-app/expo-app```
 ```npx create-expo-app```
-
-### TODO: ```npx expo export  -p web``` to export directly in /docs
