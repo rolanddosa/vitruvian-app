@@ -14,3 +14,6 @@ React Native + Expo for components reusability between mobile apps and web app
 ```npx create-expo start```
 ```npx expo export --platform web --output-dir ../docs```  under ```repos/vitruvian-app/expo-app```
 ```npx create-expo-app```
+
+### To study:
+The presence of .nojekyll file in the docs folder - Influences how Github Pages displays the page.
