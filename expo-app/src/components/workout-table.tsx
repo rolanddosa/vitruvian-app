@@ -98,6 +98,9 @@ export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
 
   return (
     <View style={styles.container}>
+      <ThemedText type="largeBold" style={styles.title}>
+        Spectrum of Lateralized Patterns
+      </ThemedText>
       <ThemedView
         type="backgroundElement"
         style={[styles.table, { transform: [{ scale: 0.65 }], marginVertical: '-30%' }]}
