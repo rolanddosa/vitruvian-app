@@ -100,7 +100,7 @@ export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
     <View style={styles.container}>
       <ThemedView
         type="backgroundElement"
-        style={[styles.table, { transform: [{ scale: 0.65 }] }]}
+        style={[styles.table, { transform: [{ scale: 0.65 }], marginVertical: '-30%' }]}
       >
         {data.map((row, rowIndex) => (
           <View key={rowIndex} style={styles.row}>
