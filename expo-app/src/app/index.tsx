@@ -58,9 +58,6 @@ export default function HomeScreen() {
     <ThemedView style={styles.container}>
       <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent}>
         <SafeAreaView style={styles.safeArea}>
-          <ThemedView style={styles.heroSection}>
-          </ThemedView>
-
           <WorkoutTable data={tableData} />
           {Platform.OS === 'web' && <WebBadge />}
         </SafeAreaView>

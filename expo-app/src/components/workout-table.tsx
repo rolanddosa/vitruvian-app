@@ -105,12 +105,21 @@ export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
 
   return (
     <View style={styles.container}>
+      <View style={styles.emptyRow} />
       <ThemedText type="largeBold" style={styles.title}>
         Spectrum of Lateralized Patterns
       </ThemedText>
+      <View style={styles.emptyRow} />
       <ThemedView
         type="backgroundElement"
-        style={[styles.table, { transform: [{ scale: 0.65 }], marginVertical: '-30%' }]}
+        style={[
+          styles.table,
+          {
+            transform: [{ scale: 0.65 }],
+            transformOrigin: 'top center',
+            marginBottom: '-35%',
+          },
+        ]}
       >
         {data.map((row, rowIndex) => (
           <View key={rowIndex} style={styles.row}>
@@ -147,6 +156,9 @@ export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
 }
 
 const styles = StyleSheet.create({
+  emptyRow: {
+    height: Spacing.four,
+  },
   title: {
     color: 'rgb(152, 196, 86)',
   },
@@ -155,7 +167,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff', // Set background color to white
     alignSelf: 'stretch',
     alignItems: 'center',
-    gap: Spacing.three,
+    gap: Spacing.one,
   },
   table: {
     alignSelf: 'stretch',
