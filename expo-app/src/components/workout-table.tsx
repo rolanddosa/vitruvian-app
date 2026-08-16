@@ -217,7 +217,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   downloadButton: {
-    alignSelf: 'stretch',
+    width: '65%',
+    alignSelf: 'center',
   },
   downloadButtonInner: {
     backgroundColor: 'rgb(34, 31, 32)',
