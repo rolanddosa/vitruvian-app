@@ -135,8 +135,10 @@ export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
           onPress={handleDownload}
           style={({ pressed }) => [styles.downloadButton, pressed && styles.pressed]}
         >
-          <ThemedView type="backgroundElement" style={styles.downloadButtonInner}>
-            <ThemedText type="smallBold">Download selections</ThemedText>
+          <ThemedView style={styles.downloadButtonInner}>
+            <ThemedText type="smallBold" style={styles.downloadButtonText}>
+              Download selections
+            </ThemedText>
           </ThemedView>
         </Pressable>
       )}
@@ -146,7 +148,7 @@ export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
 
 const styles = StyleSheet.create({
   title: {
-    color: '#8CC641',
+    color: 'rgb(152, 196, 86)',
   },
   container: {
     flex: 1,
@@ -189,9 +191,13 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   downloadButtonInner: {
+    backgroundColor: 'rgb(34, 31, 32)',
     alignItems: 'center',
     paddingVertical: Spacing.three,
     paddingHorizontal: Spacing.four,
     borderRadius: Spacing.three,
+  },
+  downloadButtonText: {
+    color: 'rgb(152, 196, 86)',
   },
 });
