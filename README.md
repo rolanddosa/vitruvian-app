@@ -12,7 +12,7 @@ React Native + Expo for components reusability between mobile apps and web app
 
 ### Expo
 ```npx expo start```
-```npx expo export --platform web --output-dir ../docs```  under ```repos/vitruvian-app/expo-app```
+```npm run export:docs``` (or ```npx expo export --platform web --output-dir ../docs && git add ../docs```) under ```repos/vitruvian-app/expo-app```
 ```npx create-expo-app```
 
 ### To study:

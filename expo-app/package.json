@@ -37,6 +37,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "export:docs": "expo export --platform web --output-dir ../docs && git add ../docs",
     "lint": "expo lint"
   },
   "private": true
