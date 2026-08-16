@@ -81,6 +81,7 @@ const DEFAULT_DATA = Array.from({ length: ROW_COUNT }, (_, row) =>
 
 export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [tableHeight, setTableHeight] = useState<number | null>(null);
 
   const toggle = (row: number, col: number) => {
     if (row === 0 || col === 0) return;
@@ -110,46 +111,62 @@ export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
         Spectrum of Lateralized Patterns
       </ThemedText>
       <View style={styles.emptyRow} />
-      <ThemedView
-        type="backgroundElement"
-        style={[
-          styles.table,
-          {
-            transform: [{ scale: 0.65 }],
-            transformOrigin: 'top center',
-            marginBottom: '-35%',
-          },
-        ]}
+      <View
+        style={{
+          height: tableHeight ? tableHeight * 0.65 : undefined,
+          alignSelf: 'stretch',
+          alignItems: 'center',
+        }}
       >
-        {data.map((row, rowIndex) => (
-          <View key={rowIndex} style={styles.row}>
-            {row.map((value, colIndex) => {
-              const isSelected = selected.has(`${rowIndex}:${colIndex}`);
-              return (
-                <Pressable
-                  key={colIndex}
-                  onPress={() => toggle(rowIndex, colIndex)}
-                  style={({ pressed }) => [styles.pressable, pressed && styles.pressed]}
-                >
-                  <TableCell value={value} isHeader={rowIndex === 0 || colIndex === 0} isSelected={isSelected} />
-                </Pressable>
-              );
-            })}
-          </View>
-        ))}
-      </ThemedView>
+        <ThemedView
+          onLayout={(e) => {
+            const h = e.nativeEvent.layout.height;
+            if (h > 0 && Math.abs((tableHeight ?? 0) - h) > 1) {
+              setTableHeight(h);
+            }
+          }}
+          type="backgroundElement"
+          style={[
+            styles.table,
+            {
+              transform: [{ scale: 0.65 }],
+              transformOrigin: 'top center',
+            },
+          ]}
+        >
+          {data.map((row, rowIndex) => (
+            <View key={rowIndex} style={styles.row}>
+              {row.map((value, colIndex) => {
+                const isSelected = selected.has(`${rowIndex}:${colIndex}`);
+                return (
+                  <Pressable
+                    key={colIndex}
+                    onPress={() => toggle(rowIndex, colIndex)}
+                    style={({ pressed }) => [styles.pressable, pressed && styles.pressed]}
+                  >
+                    <TableCell value={value} isHeader={rowIndex === 0 || colIndex === 0} isSelected={isSelected} />
+                  </Pressable>
+                );
+              })}
+            </View>
+          ))}
+        </ThemedView>
+      </View>
 
       {selected.size > 0 && (
-        <Pressable
-          onPress={handleDownload}
-          style={({ pressed }) => [styles.downloadButton, pressed && styles.pressed]}
-        >
-          <ThemedView style={styles.downloadButtonInner}>
-            <ThemedText type="smallBold" style={styles.downloadButtonText}>
-              Download selections
-            </ThemedText>
-          </ThemedView>
-        </Pressable>
+        <>
+          <View style={styles.emptyRow} />
+          <Pressable
+            onPress={handleDownload}
+            style={({ pressed }) => [styles.downloadButton, pressed && styles.pressed]}
+          >
+            <ThemedView style={styles.downloadButtonInner}>
+              <ThemedText type="smallBold" style={styles.downloadButtonText}>
+                Download selections
+              </ThemedText>
+            </ThemedView>
+          </Pressable>
+        </>
       )}
     </View>
   );
