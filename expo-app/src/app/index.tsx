@@ -40,7 +40,7 @@ export default function HomeScreen() {
     ['Mid-Cerv. Lateral Flex.', 'No Limit', 'Limited Left', 'Limited Left and/or Right', 'Limited Right and/or Left', 'Limited Right', 'No Limit'],
     ['*Shld. Horiz Abduction', 'No Limit', 'Limited Right', 'Limited Right (possibly Left)', 'Limited Left (possibly Right)', 'Limited Left', 'No Limit'],
     ['Shld. Internal Rotation', 'No Limit', 'Limited Left', 'Limited Left and Right', 'Limited Right and Left', 'Limited Right', 'No Limit'],
-    ['Anterior Rib Angle', 'Even Right Wider', 'Right Wider and/or Left Wider', 'Left Wider and/or Right Wider', 'Left Wider', 'Even'],
+    ['Anterior Rib Angle', 'Even', 'Right Wider', 'Right Wider and/or Left Wider', 'Left Wider and/or Right Wider', 'Left Wider', 'Even'],
     ['Lower Cage Expansion', 'Even Compr/Expan', 'Right Expanded', 'Right Expanded or Both', 'Left Expanded or Both', 'Left Expanded', 'Even Compr/Expan'],
     ['Upper GPT', 'Non-Biased Power', 'Left Biased Power', 'Left (possibly Right) Biased Power or No Power', 'Right (possibly Left) Biased Power or No Power', 'Right Biased Power', 'Non-Biased Power'],
     ['*Lower Trunk Rotation', 'No Limit', 'Limited Knees Right', 'Limited Knees Right (possibly Left)', 'Limited Knees Left (possibly Right)', 'Limited Knees Left', 'No Limit'],
