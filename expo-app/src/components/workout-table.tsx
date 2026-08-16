@@ -122,7 +122,7 @@ export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
                   onPress={() => toggle(rowIndex, colIndex)}
                   style={({ pressed }) => [styles.pressable, pressed && styles.pressed]}
                 >
-                  <TableCell value={value} isHeader={rowIndex === 0} isSelected={isSelected} />
+                  <TableCell value={value} isHeader={rowIndex === 0 || colIndex === 0} isSelected={isSelected} />
                 </Pressable>
               );
             })}
