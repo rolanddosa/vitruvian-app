@@ -60,8 +60,15 @@ function TableCell({
   isSelected: boolean;
 }) {
   return (
-    <ThemedView type={isSelected ? 'backgroundPressed' : 'backgroundSelected'} style={styles.cell}>
-      <ThemedText type={isHeader ? 'smallBold' : 'small'} themeColor={isHeader ? 'textSecondary' : 'text'}>
+    <ThemedView
+      type={isHeader ? undefined : isSelected ? 'backgroundPressed' : 'backgroundSelected'}
+      style={[styles.cell, isHeader && styles.headerCell]}
+    >
+      <ThemedText
+        type={isHeader ? 'smallBold' : 'small'}
+        style={isHeader ? styles.headerText : undefined}
+        themeColor={isHeader ? undefined : 'text'}
+      >
         {value}
       </ThemedText>
     </ThemedView>
@@ -170,6 +177,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: Spacing.two,
     borderRadius: Spacing.two,
+  },
+  headerCell: {
+    backgroundColor: 'rgb(34, 31, 32)',
+  },
+  headerText: {
+    color: '#ffffff',
+    textAlign: 'center',
   },
   downloadButton: {
     alignSelf: 'stretch',
