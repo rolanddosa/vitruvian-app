@@ -138,7 +138,12 @@ export function WorkoutTable({ data = DEFAULT_DATA }: { data?: string[][] }) {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    color: '#8CC641',
+  },
   container: {
+    flex: 1,
+    backgroundColor: '#ffffff', // Set background color to white
     alignSelf: 'stretch',
     alignItems: 'center',
     gap: Spacing.three,
